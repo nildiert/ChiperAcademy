@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { render } from "react-dom";
 import Videos from "../pages/containers/videos";
 import Home from "../pages/components/home";
-import NotFound from "../pages/components/not-found"
+import NotFound from "../pages/components/not-found";
 import Perfil from "../pages/components/perfil";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
@@ -11,7 +11,7 @@ import { Map as map } from "immutable";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Header from "../pages/components/header";
 // function logger({ getState, dispatch}) {
 //   return (next) => {
@@ -46,11 +46,13 @@ render(
     <Provider store={store}>
       <Fragment>
         <Header />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/videos" component={Videos} />
-        <Route exact path="/perfil" component={Perfil} />
-        <Route exact path="/perfil" component={Perfil} />
-        <Route component={NotFound} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/videos" component={Videos} />
+          <Route exact path="/perfil" component={Perfil} />
+          <Redirect from="/v" to="/videos" />
+          <Route component={NotFound} />
+        </Switch>
       </Fragment>
     </Provider>
   </BrowserRouter>,
