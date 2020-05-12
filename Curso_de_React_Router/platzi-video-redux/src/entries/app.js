@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { render } from "react-dom";
 import Videos from "../pages/containers/videos";
 import Home from "../pages/components/home";
+import NotFound from "../pages/components/not-found"
 import Perfil from "../pages/components/perfil";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
@@ -46,8 +47,10 @@ render(
       <Fragment>
         <Header />
         <Route exact path="/" component={Home} />
-        <Route exact path="/videos" component={Videos}/>
-        <Route exact path="/perfil" component={Perfil}/>
+        <Route exact path="/videos" component={Videos} />
+        <Route exact path="/perfil" component={Perfil} />
+        <Route exact path="/perfil" component={Perfil} />
+        <Route component={NotFound} />
       </Fragment>
     </Provider>
   </BrowserRouter>,
